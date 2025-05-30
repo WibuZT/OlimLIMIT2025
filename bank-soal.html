@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Soal - OlimLIMIT</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .soal-button {
+            background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 30px 40px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            min-width: 200px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .soal-button:hover {
+            transform: translateY(-5px);
+            background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2));
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .soal-button i {
+            font-size: 3rem;
+        }
+
+        .soal-button .year {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .soal-button .description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .buttons-container {
+                gap: 20px;
+            }
+
+            .soal-button {
+                min-width: 150px;
+                padding: 20px 25px;
+            }
+
+            .soal-button i {
+                font-size: 2rem;
+            }
+
+            .soal-button .year {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animation */
+        .section {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.4s; }
+        .section:nth-child(4) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Color variations for different levels */
+        .sd-section .soal-button {
+            background: linear-gradient(145deg, rgba(255,193,7,0.3), rgba(255,193,7,0.2));
+            border: 1px solid rgba(255,193,7,0.4);
+        }
+
+        .smp-section .soal-button {
+            background: linear-gradient(145deg, rgba(40,167,69,0.3), rgba(40,167,69,0.2));
+            border: 1px solid rgba(40,167,69,0.4);
+        }
+
+        .sma-section .soal-button {
+            background: linear-gradient(145deg, rgba(220,53,69,0.3), rgba(220,53,69,0.2));
+            border: 1px solid rgba(220,53,69,0.4);
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Kembali ke Beranda
+    </a>
+
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-book-open"></i> Bank Soal</h1>
+            <p>Kumpulan Soal Olimpiade Matematika Tahun Sebelumnya</p>
+        </div>
+
+        <!-- SD Section -->
+        <div class="section sd-section">
+            <h2 class="section-title"><i class="fas fa-child"></i> Sekolah Dasar (SD)</h2>
+            <div class="buttons-container">
+                <a href="#" class="soal-button" onclick="openSoal('sd-2024')">
+                    <i class="fas fa-star"></i>
+                    <div class="year">2024</div>
+                    <div class="description">Soal SD Tahun 2024</div>
+                </a>
+                <a href="#" class="soal-button" onclick="openSoal('sd-2023')">
+                    <i class="fas fa-medal"></i>
+                    <div class="year">2023</div>
+                    <div class="description">Soal SD Tahun 2023</div>
+                </a>
+                <a href="#" class="soal-button" onclick="openSoal('sd-2022')">
+                    <i class="fas fa-trophy"></i>
+                    <div class="year">2022</div>
+                    <div class="description">Soal SD Tahun 2022</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- SMP Section -->
+        <div class="section smp-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Sekolah Menengah Pertama (SMP)</h2>
+            <div class="buttons-container">
+                <a href="#" class="soal-button" onclick="openSoal('smp-2024')">
+                    <i class="fas fa-star"></i>
+                    <div class="year">2024</div>
+                    <div class="description">Soal SMP Tahun 2024</div>
+                </a>
+                <a href="#" class="soal-button" onclick="openSoal('smp-2023')">
+                    <i class="fas fa-medal"></i>
+                    <div class="year">2023</div>
+                    <div class="description">Soal SMP Tahun 2023</div>
+                </a>
+                <a href="#" class="soal-button" onclick="openSoal('smp-2022')">
+                    <i class="fas fa-trophy"></i>
+                    <div class="year">2022</div>
+                    <div class="description">Soal SMP Tahun 2022</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- SMA Section -->
+        <div class="section sma-section">
+            <h2 class="section-title"><i class="fas fa-university"></i> Sekolah Menengah Atas (SMA)</h2>
+            <div class="buttons-container">
+                <a href="#" class="soal-button" onclick="openSoal('sma-2024')">
+                    <i class="fas fa-star"></i>
+                    <div class="year">2024</div>
+                    <div class="description">Soal SMA Tahun 2024</div>
+                </a>
+                <a href="#" class="soal-button" onclick="openSoal('sma-2023')">
+                    <i class="fas fa-medal"></i>
+                    <div class="year">2023</div>
+                    <div class="description">Soal SMA Tahun 2023</div>
+                </a>
+                <a href="#" class="soal-button" onclick="openSoal('sma-2022')">
+                    <i class="fas fa-trophy"></i>
+                    <div class="year">2022</div>
+                    <div class="description">Soal SMA Tahun 2022</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openSoal(type) {
+            // URL untuk setiap jenis soal - ganti dengan URL yang sesuai
+            const soalLinks = {
+                'sd-2024': 'https://example.com/soal-sd-2024.pdf',
+                'sd-2023': 'https://example.com/soal-sd-2023.pdf',
+                'sd-2022': 'https://example.com/soal-sd-2022.pdf',
+                'smp-2024': 'https://example.com/soal-smp-2024.pdf',
+                'smp-2023': 'https://example.com/soal-smp-2023.pdf',
+                'smp-2022': 'https://example.com/soal-smp-2022.pdf',
+                'sma-2024': 'https://example.com/soal-sma-2024.pdf',
+                'sma-2023': 'https://example.com/soal-sma-2023.pdf',
+                'sma-2022': 'https://example.com/soal-sma-2022.pdf'
+            };
+
+            const url = soalLinks[type];
+            if (url) {
+                // Buka link di tab baru
+                window.open(url, '_blank');
+            } else {
+                alert('Soal untuk ' + type + ' belum tersedia. Mohon tunggu update selanjutnya!');
+            }
+        }
+
+        // Add smooth scrolling effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.soal-button');
+            buttons.forEach((button, index) => {
+                button.style.animationDelay = `${0.8 + (index * 0.1)}s`;
+                button.style.animation = 'fadeInUp 0.6s ease forwards';
+            });
+        });
+    </script>
+</body>
+</html>
